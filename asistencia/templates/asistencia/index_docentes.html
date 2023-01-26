@@ -13,30 +13,33 @@
                             <h4 class="mb-0">Docentes</h4>
                         </div>
                         <div class="col text-end pe-3">
-                            <h3>+</h3>
+                            <h3>
+                            <a title="Agregar Docente" class="text-white" href=" {% url 'crear_docente' %} ">
+                                    +
+                                </a>
+                            </h3>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
-
                             <tr>
                                 <th class="text-sm text-secondary">Nombre</th>
-                            <th class="text-sm text-secondary">Apellido</th>
-                            <th class="text-sm text-secondary">Cedula</th>
-                        </tr>
-                    </thead>
+                                <th class="text-sm text-secondary">Apellido</th>
+                                <th class="text-sm text-secondary">Cedula</th>
+                            </tr>
+                        </thead>
                         <tbody>
-
+                    
                             {% for docente in lista_docentes %}
-                        <tr>
-                            <td>{{ docente.nombre }}</td>
-                            <td>{{ docente.apellido }}</td>
-                            <td>{{ docente.ci }}-{{ docente.num_ci }}</td>
-                        </tr>              
-                        {% endfor %}              
-                    </tbody>
+                            <tr>
+                                <td>{{ docente.nombre }}</td>
+                                <td>{{ docente.apellido }}</td>
+                                <td>{{ docente.ci }}-{{ docente.num_ci }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
                 </div>
             </div>

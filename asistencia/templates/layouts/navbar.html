@@ -1,5 +1,5 @@
 {% block content %}
-<nav style="navbar navbar-main">
+<nav></nav>
     <div class="px-3 py-2 bg-primary">
       <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -15,15 +15,15 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
+              <a href="{% url 'registros' %}" class="nav-link text-white">
                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
-                Orders
+                Registros
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
+              <a href=" {% url 'docentes' %} " class="nav-link text-white">
                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
-                Customers
+                Docentes
               </a>
             </li>
           </ul>
@@ -32,4 +32,4 @@
     </div>
     
   </nav>
- {% endblock content %} 
+ {% endblock content %}

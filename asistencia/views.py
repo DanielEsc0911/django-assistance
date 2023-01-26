@@ -10,7 +10,24 @@ from .forms import *
 # Create your views here.
 
 def indexHome(request):
-    return redirect('crear_docente')
+    return redirect('docentes')
+
+def indexRegistro(request):
+    lista_registros = Registro.objects.all()
+                
+    return render (request, 'asistencia/index_registros.html', {'lista_registros': lista_registros})
+
+def addEntrada(request, pk):
+    item = Registro.objects.get(pk=pk)
+    item.entrada = timezone.now()
+    item.save()
+    return redirect('registros')
+
+def addSalida(request, pk):
+    item = Registro.objects.get(pk=pk)
+    item.salida = timezone.now()
+    item.save()
+    return redirect('registros')
 
 def indexDocente(request):
     lista_docentes = Docente.objects.all()

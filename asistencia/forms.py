@@ -13,6 +13,7 @@ class FormDocente(ModelForm):
         widgets ={
             'nombre': TextInput(attrs={'class': 'form-control'}),
             'apellido': TextInput(attrs={'class': 'form-control' }),
-            'ci': Select(attrs={'class': 'form-control text-center'}),          
+            'ci': Select(attrs={'class': 'form-select text-center'}),          
             'num_ci': TextInput(attrs={'class': 'form-control'}),
+            'uc': SelectMultiple(attrs={'class': 'form-select '}),
         }

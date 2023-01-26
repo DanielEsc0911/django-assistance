@@ -8,7 +8,8 @@ class DocenteAdmin(admin.ModelAdmin):
 
 class RegistroAdmin(admin.ModelAdmin):
     ordering = ('fecha',)
-    list_display = ('fecha', 'docente', 'hora_de_entrada', 'hora_de_salida')
+    list_display = ('fecha', 'docente', 'entrada', 'salida')
     
 admin.site.register(Docente, DocenteAdmin)
 admin.site.register(Registro, RegistroAdmin)
+admin.site.register(Uc)

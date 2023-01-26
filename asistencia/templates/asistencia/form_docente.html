@@ -13,7 +13,6 @@
                     <div class="card-body ">
                         <div class="d-flex justify-content-center input-group ">
                             <table class="table-responsive">
-
                                 {% csrf_token %}
                                 {{ form.as_table }}
                             </table>
@@ -24,9 +23,9 @@
 
                         <div class="">
 
-                            <button class="btn btn-secondary">Cancelar</button>
+                            <button class="btn btn-secondary" onClick="window.history.back();return false;">Cancelar</button>
                         
-                            <button class="btn btn-primary">Confirmar</button>
+                            <button class="btn btn-primary" type="submit">Confirmar</button>
                         </div>
                     </div>
                 </form>
@@ -36,3 +35,17 @@
 </div>
 
 {% endblock content %}
+
+{% block javascripts %}
+<script>
+function() {
+    $('#id_ci').select2({
+      placeholder: '-',
+      width: '100%',
+      selectionCssClass: ':all:',
+      dropdownCssClass: ':all:'
+    });
+
+  };
+</script>
+{% endblock javascripts %} 
