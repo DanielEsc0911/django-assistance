@@ -13,8 +13,6 @@ urlpatterns = [
     path('', views.indexHome, name = 'home' ),
     path('docentes', views.indexDocente, name ='docentes' ),
     path('docentes/crear', views.crearDocente, name ='crear_docente' ),
-    path('registros', views.indexRegistro, name ='registros' ),
-    path('registros/<str:pk>/entrada', views.addEntrada, name ='entrada' ),
-    path('registros/<str:pk>/salida', views.addSalida, name ='salida' ),
-
+    path('horarios', views.indexHorario, name ='horarios' ),
+    path('horarios/crear', views.crearHorario, name ='crear_horarios' ),
 ]

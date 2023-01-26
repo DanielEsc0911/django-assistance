@@ -6,10 +6,10 @@ class DocenteAdmin(admin.ModelAdmin):
     ordering = ('nombre',)
     list_display = ('nombre', 'apellido', 'ci', 'num_ci')
 
-class RegistroAdmin(admin.ModelAdmin):
-    ordering = ('fecha',)
-    list_display = ('fecha', 'docente', 'entrada', 'salida')
+class HorarioAdmin(admin.ModelAdmin):
+    ordering = ('uc',)
+    list_display = ('uc', 'docente', 'entrada', 'salida')
     
 admin.site.register(Docente, DocenteAdmin)
-admin.site.register(Registro, RegistroAdmin)
+admin.site.register(Horario, HorarioAdmin)
 admin.site.register(Uc)

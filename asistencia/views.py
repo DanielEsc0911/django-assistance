@@ -12,22 +12,10 @@ from .forms import *
 def indexHome(request):
     return redirect('docentes')
 
-def indexRegistro(request):
-    lista_registros = Registro.objects.all()
+def indexHorario(request):
+    lista_horarios = Horario.objects.all()
                 
-    return render (request, 'asistencia/index_registros.html', {'lista_registros': lista_registros})
-
-def addEntrada(request, pk):
-    item = Registro.objects.get(pk=pk)
-    item.entrada = timezone.now()
-    item.save()
-    return redirect('registros')
-
-def addSalida(request, pk):
-    item = Registro.objects.get(pk=pk)
-    item.salida = timezone.now()
-    item.save()
-    return redirect('registros')
+    return render (request, 'asistencia/index_horarios.html', {'lista_horarios': lista_horarios})
 
 def indexDocente(request):
     lista_docentes = Docente.objects.all()
@@ -42,3 +30,12 @@ def crearDocente(request):
             form.save()
             
     return render (request, 'asistencia/form_docente.html', {'form': form})
+
+def crearHorario(request):
+    form = FormHorario()
+    if request.method == 'POST':
+        form = FormHorario(request.POST)
+        if form.is_valid():
+            form.save()
+            
+    return render (request, 'asistencia/form_horario.html', {'form': form})

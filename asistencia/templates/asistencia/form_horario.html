@@ -6,9 +6,9 @@
     <div class="min-vh-80 h-100">
         <div class="col-12 d-flex justify-content-center">
             <div class="card shadow my-4 w-50">
-                    <form class="form" method="POST">
+                <form class="form" method="POST">
                     <div class="card-header bg-primary text-white p-3">
-                        <h4>Agregar Docente</h4>
+                        <h4>Crear Horario</h4>
                     </div>
                     <div class="card-body ">
                         <div class="d-flex justify-content-center input-group ">
@@ -22,13 +22,12 @@
                     <div class="card-footer text-center">
 
                         <div class="">
-
                             <button class="btn btn-secondary" onClick="window.history.back();return false;">Cancelar</button>                        
                             <button class="btn btn-primary" type="submit">Guardar</button>
                         </div>
                     </div>
                 </form>
-                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -37,5 +36,9 @@
 
 {% block javascripts %}
 <script>
+jQuery('#id_entrada').timepicker({
+});
+jQuery('#id_salida').timepicker({
+});
 </script>
 {% endblock javascripts %} 
