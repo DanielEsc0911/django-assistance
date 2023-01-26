@@ -32,13 +32,13 @@ SECRET_KEY = 'django-insecure-rc^*w^w&6g9_(uvx#6s*bnt!w)l0rdi%!l7mv#y%uc&x%wo5pk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 # FORM SUBMISSION
 # Comment out the following line and place your railway URL, and your production URL in the array.
-# CSRF_TRUSTED_ORIGINS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://localhost", "https://127.0.0.1"]
 
-ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
+ASSETS_ROOT = os.path.join(BASE_DIR, 'asistencia/static/assets')
 
 TEMPLATES = [
     {
@@ -163,11 +163,12 @@ MEDIA_ROOT = os.getenv ('MEDIA_ROOT', '/static/assets/logos/')
 MEDIA_URL = '/asistencia/static/assets/logos/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     os.path.join(CORE_DIR, 'asistencia/static'),
-)
+    BASE_DIR / "asistencia/static",
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
