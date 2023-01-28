@@ -6,34 +6,21 @@
     <div class="min-vh-80 h-100">
         <div class="col-12 pt-3 px-xl-5">
 
-            <div class="row my-3">
+            <div class="row mt-2">
 
-                <div class="col-6">
+                <div class="col-md-6 col-12 mb-3">
 
                     <div class="card shadow w-auto">
                         <div class="card-header bg-primary text-white p-3">
-                            <div class="row justify-content-between">
-                                <div class="col pt-1">
-
+                            <div class="row">
                                     <h4 class="mb-0">Unidades Curriculares</h4>
-                                </div>
-                                {% if perms.asistencia.add_uc %}
-                                <div class="col text-end pe-3">
-                                    <h3>
-                                        <a title="Agregar Unidad Curricular" class="text-white"
-                                            href=" {% url 'crear_uc' %} ">
-                                            +
-                                        </a>
-                                    </h3>
-                                </div>
-                                {% endif %}
                             </div>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-sm text-secondary">Nombre</th>
+                                        <th class="fs-6 text-secondary">Nombre</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,33 +35,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6 col-12 mb-3">
                     <div class="card shadow w-auto">
                         <div class="card-header bg-primary text-white p-3">
-                            <div class="row justify-content-between">
-                                <div class="col pt-1">
-
+                            <div class="row">
                                     <h4 class="mb-0">Docentes</h4>
-                                </div>
-                                {% if perms.asistencia.add_docente %}
-                                <div class="col text-end pe-3">
-                                    <h3>
-                                        <a title="Agregar Docente" class="text-white"
-                                            href=" {% url 'crear_docente' %} ">
-                                            +
-                                        </a>
-                                    </h3>
-                                </div>
-                                {% endif %}
                             </div>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-sm text-secondary">Nombre</th>
-                                        <th class="text-sm text-secondary">Apellido</th>
-                                        <th class="text-sm text-secondary">Cédula</th>
+                                        <th class="fs-6 text-secondary">Nombre</th>
+                                        <th class="fs-6 text-secondary">Apellido</th>
+                                        <th class="fs-6 text-secondary">Cédula</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,33 +70,20 @@
                 <div class="col-12">
                     <div class="card shadow w-auto">
                         <div class="card-header bg-primary text-white p-3">
-                            <div class="row justify-content-between">
-                                <div class="col pt-1">
-
+                            <div class="row">
                                     <h4 class="mb-0">Horarios</h4>
-                                </div>
-                                {% if perms.asistencia.add_horario %}
-                                <div class="col text-end pe-3">
-                                    <h3>
-                                        <a title="Agregar Horario" class="text-white"
-                                            href=" {% url 'crear_horario' %} ">
-                                            +
-                                        </a>
-                                    </h3>
-                                </div>
-                                {% endif %}
                             </div>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-sm text-secondary">Día</th>
-                                        <th class="text-sm text-secondary">Unidad Curricular</th>
-                                        <th class="text-sm text-secondary text-center">Sección</th>
-                                        <th class="text-sm text-secondary">Docente</th>
-                                        <th class="text-sm text-secondary text-center">Entrada</th>
-                                        <th class="text-sm text-secondary text-center">Salida</th>
+                                        <th class="fs-6 text-secondary">Día</th>
+                                        <th class="fs-6 text-secondary">Unidad Curricular</th>
+                                        <th class="fs-6 text-secondary text-center">Sección</th>
+                                        <th class="fs-6 text-secondary">Docente</th>
+                                        <th class="fs-6 text-secondary text-center">Entrada</th>
+                                        <th class="fs-6 text-secondary text-center">Salida</th>
                                     </tr>
                                 </thead>
                                 <tbody>

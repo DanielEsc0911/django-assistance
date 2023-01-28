@@ -8,12 +8,12 @@
             <div class="card shadow my-4 w-auto">
                 <div class="card-header bg-primary text-white p-3">
                     <div class="row justify-content-between">
-                        <div class="col pt-1">
+                        <div class="col-10 pt-1">
 
                             <h4 class="mb-0">Unidades Curriculares</h4>
                         </div>
                         {% if perms.asistencia.add_uc %}
-                        <div class="col text-end pe-3">
+                        <div class="col-2 text-end pe-3">
                             <h3>
                                 <a title="Agregar Unidad Curricular" class="text-white" href=" {% url 'crear_uc' %} ">
                                     +
@@ -27,7 +27,10 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="text-sm text-secondary">Nombre</th>
+                                <th class="fs-6 text-secondary">Nombre</th>
+                                {% if perms.asistencia.change_uc or perms.asistencia.delete_uc %}
+                                <th class="fs-6 text-secondary text-center">Opciones</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +38,57 @@
                             {% for uc in lista_ucs %}
                             <tr>
                                 <td>{{ uc.nombre }}</td>
+                                {% if perms.asistencia.change_uc or perms.asistencia.delete_uc %}
+                                <td class="text-center align-middle">
+
+                                    {% if perms.asistencia.change_uc %}
+                                    <a href="{% url 'edit_uc' uc.id %}"
+                                        class="text-primary font-weight-bold text-xs" style="user-select: none"
+                                        title="Editar">
+                                        <i class="fas fa-pen-ruler"></i>
+                                    </a>
+                                    {% endif %}
+
+                                    {% if perms.asistencia.delete_uc %}
+                                    <!--Trigger modal-->
+                                    <a class="font-weight-bold" data-bs-toggle="modal"
+                                        data-bs-target="#id-{{ uc.id }}"
+                                        style="user-select: none; cursor: pointer !important;" title="Borrar">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    {% endif %}
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="id-{{ uc.id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                        style="user-select: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header px-4"
+                                                    style="background-color: var(--bs-primary) !important;">
+                                                    <h4 class="modal-title font-weight-bolder text-white"
+                                                        id="exampleModalLabel">¡Advertencia!</h4>
+                                                </div>
+                                                <div class="modal-body text-start px-4">
+                                                    <p class="mb-0 font-weight-bold"
+                                                        style="line-height: 1.25; font-weight: 500 !important;">
+                                                        ¿Seguro que desea eliminar la Unidad Curricular <b
+                                                            style="color: var(--bs-primary)">{{ uc.nombre }}</b>?</p>                                                    
+                                                </div>
+                                                <div class="modal-footer text-center justify-content-center py-2">
+                                                    <form method="POST" action="{% url 'delete_uc' uc.id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" 
+                                                        class="m-0 btn btn-danger">Confirmar</button>
+                                                        <button type="button" class="m-0 btn btn-secondary" 
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         </tbody>

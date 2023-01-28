@@ -19,8 +19,8 @@ class FormDocente(ModelForm):
         model = Docente
         fields = '__all__'
         widgets ={
-            'nombre': TextInput(attrs={'class': 'form-control', 'autocomplete':'off'}),
-            'apellido': TextInput(attrs={'class': 'form-control', 'autocomplete':'off'}),
+            'nombre': TextInput(attrs={'class': 'form-control text-capitalize', 'autocomplete':'off'}),
+            'apellido': TextInput(attrs={'class': 'form-control text-capitalize', 'autocomplete':'off'}),
             'ci': Select(attrs={'class': 'form-select text-center'}),          
             'num_ci': TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'00000000'}),
         }
@@ -36,6 +36,7 @@ class FormHorario(ModelForm):
             'dia': Select(attrs={'class': 'form-select'}),          
             'entrada': TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'0:00 - 23:59'}),
             'salida':TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'0:00 - 23:59'}),
+            'asistencia': CheckboxInput(attrs={'class': 'form-check-input justify-content-center'}),
         }
 
 class FormUc(ModelForm):    

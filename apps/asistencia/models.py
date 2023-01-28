@@ -32,8 +32,9 @@ class Horario (models.Model):
     seccion = models.IntegerField(validators=[int_list_validator(allow_negative=False)], null=True)
     docente = models.ForeignKey('Docente', on_delete=models.CASCADE, null=True)
     dia = models.CharField(max_length=10, choices=DAY_OPT, blank=False, null=True)
-    entrada = models.CharField(max_length=12, validators=[RegexValidator(r'^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')], blank=True, null=True)
-    salida = models.CharField(max_length=12, validators=[RegexValidator(r'^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')], blank=True, null=True)
+    entrada = models.CharField(max_length=5, validators=[RegexValidator(r'^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')], blank=True, null=True)
+    salida = models.CharField(max_length=5, validators=[RegexValidator(r'^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')], blank=True, null=True)
+    asistencia = models.BooleanField(null=True)
 
 class Uc (models.Model):
     nombre = models.CharField(max_length=50, unique=True, null=True)

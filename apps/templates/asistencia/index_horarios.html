@@ -27,12 +27,16 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="text-sm text-secondary">Día</th>
-                                <th class="text-sm text-secondary">Unidad Curricular</th>
-                                <th class="text-sm text-secondary text-center">Sección</th>
-                                <th class="text-sm text-secondary">Docente</th>
-                                <th class="text-sm text-secondary text-center">Entrada</th>
-                                <th class="text-sm text-secondary text-center">Salida</th>
+                                <th class="fs-6 text-secondary">Día</th>
+                                <th class="fs-6 text-secondary">Unidad Curricular</th>
+                                <th class="fs-6 text-secondary text-center">Sección</th>
+                                <th class="fs-6 text-secondary">Docente</th>
+                                <th class="fs-6 text-secondary text-center">Entrada</th>
+                                <th class="fs-6 text-secondary text-center">Salida</th>
+                                <th class="fs-6 text-secondary text-center">Asistencia</th>
+                                {% if perms.asistencia.change_uc or perms.asistencia.delete_uc %}
+                                <th class="fs-6 text-secondary text-center">Opciones</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
@@ -45,18 +49,78 @@
                                 <td>{{ horario.docente.nombre }} {{ horario.docente.apellido }}</td>
                                 <td class="text-center">
                                     {% if horario.entrada|first in '0' %}
-                                        {{ horario.entrada|slice:"1:" }}
+                                    {{ horario.entrada|slice:"1:" }}
                                     {% else %}
-                                        {{ horario.entrada }}
+                                    {{ horario.entrada }}
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
                                     {% if horario.salida|first in '0' %}
-                                        {{ horario.salida|slice:"1:" }}
+                                    {{ horario.salida|slice:"1:" }}
                                     {% else %}
-                                        {{ horario.salida }}
+                                    {{ horario.salida }}
                                     {% endif %}
                                 </td>
+                                <td class="text-center">                                    
+                                    {% if horario.asistencia == True %}
+                                    <i class="fas fa-check text-success"></i>
+                                    {% else %}
+                                    <i class="fas fa-times text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                
+                                {% if perms.asistencia.change_horario or perms.asistencia.delete_horario %}
+                                <td class="text-center align-middle">
+
+                                    {% if perms.asistencia.change_horario %}
+                                    <a href="{% url 'edit_horario' horario.id %}"
+                                        class="text-primary font-weight-bold text-xs" style="user-select: none"
+                                        title="Editar">
+                                        <i class="fas fa-pen-ruler"></i>
+                                    </a>
+                                    {% endif %}
+
+                                    {% if perms.asistencia.delete_horario %}
+                                    <!--Trigger modal-->
+                                    <a class="font-weight-bold" data-bs-toggle="modal"
+                                        data-bs-target="#id-{{ horario.id }}"
+                                        style="user-select: none; cursor: pointer !important;" title="Borrar">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    {% endif %}
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="id-{{ horario.id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                        style="user-select: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header px-4"
+                                                    style="background-color: var(--bs-primary) !important;">
+                                                    <h4 class="modal-title font-weight-bolder text-white"
+                                                        id="exampleModalLabel">¡Advertencia!</h4>
+                                                </div>
+                                                <div class="modal-body text-start px-4">
+                                                    <p class="mb-0 font-weight-bold"
+                                                        style="line-height: 1.25; font-weight: 500 !important;">
+                                                        ¿Seguro que desea eliminar el Horario <b
+                                                            style="color: var(--bs-primary)">{{ horario.entrada }}-{{ horario.salida }}</b>?
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer text-center justify-content-center py-2">
+                                                    <form method="POST" action="{% url 'delete_horario' horario.id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit"
+                                                            class="m-0 btn btn-danger">Confirmar</button>
+                                                        <button type="button" class="m-0 btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         </tbody>
