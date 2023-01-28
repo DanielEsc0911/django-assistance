@@ -9,16 +9,18 @@
                 <div class="card-header bg-primary text-white p-3">
                     <div class="row justify-content-between">
                         <div class="col pt-1">
-                            
+
                             <h4 class="mb-0">Docentes</h4>
                         </div>
+                        {% if perms.asistencia.add_docente %}
                         <div class="col text-end pe-3">
                             <h3>
-                            <a title="Agregar Docente" class="text-white" href=" {% url 'crear_docente' %} ">
+                                <a title="Agregar Docente" class="text-white" href=" {% url 'crear_docente' %} ">
                                     +
                                 </a>
                             </h3>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="card-body table-responsive">
@@ -31,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                    
+
                             {% for docente in lista_docentes %}
                             <tr>
                                 <td>{{ docente.nombre }}</td>

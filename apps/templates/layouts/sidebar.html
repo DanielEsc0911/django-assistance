@@ -1,42 +1,71 @@
 {% block content %}
 <div class="collapse" id="collapseSBar" style="user-select: none;">
-<div class="position-absolute d-flex flex-column shadow flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100%; z-index: 5;">
-  <div class="d-flex justify-content-between">
-
-    <h1 class="mb-0" style="line-height: 1.5;">Menu</h1>
-    <a role="button" data-bs-toggle="collapse" data-bs-target="#collapseSBar" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-      <i class="fas fa-times p-3 cursor-pointer opacity-5 end-0 top-0" id="iconSidenav"></i>
-    </a>
+  <div class="position-absolute d-flex flex-column shadow flex-shrink-0 p-3 bg-light"
+    style="width: 280px; height: 100%; z-index: 5;">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h1 class="mb-0" style="line-height: 1.5;">Menu</h1>
+      </div>
+      <div>
+        <a role="button" data-bs-toggle="collapse" data-bs-target="#collapseSBar"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <i class="fas fa-times p-3 cursor-pointer opacity-5 end-0 top-0" id="iconSidenav"></i>
+        </a>
+      </div>
+    </div>
+    <hr class="mt-0">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="{% url 'home' %}"
+          class="nav-link {% if 'home' in request.get_full_path %}active{% else %}link-dark{% endif %}"
+          aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#home" />
+          </svg>
+          Inicio
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'horarios' %}"
+          class="nav-link {% if 'horario' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#table" />
+          </svg>
+          Horarios
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'docentes' %}"
+          class="nav-link {% if 'docente' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle" />
+          </svg>
+          Docentes
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'ucs' %}"
+          class="nav-link {% if 'ucs' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#grid" />
+          </svg>
+          Unidades Curriculares
+        </a>
+      </li>
+    </ul>
+    <hr class="mb-3">
+    <ul class="nav nav-pills">
+      <li>
+        <a href="/logout" class="nav-link text-dark">
+          <i class="fa fa-sign-out me-1" aria-hidden="true"> </i>
+          Cerrar Sesión
+        </a>
+      </li>
+    </ul>
+    <!--
+    <hr>
+    <span class="text-xxs">V0.4</span>
+  -->
   </div>
-  <hr class="mt-0">
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="{% url 'home' %}" class="nav-link {% if 'home' in request.get_full_path %}active{% else %}link-dark{% endif %}" aria-current="page">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-        Inicio
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'horarios' %}" class="nav-link {% if 'horario' in request.get_full_path %}active{% else %}link-dark{% endif %}">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-        Horarios
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'docentes' %}" class="nav-link {% if 'docente' in request.get_full_path %}active{% else %}link-dark{% endif %}">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-        Docentes
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'ucs' %}" class="nav-link {% if 'ucs' in request.get_full_path %}active{% else %}link-dark{% endif %}">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-        Unidades Curriculares
-      </a>
-    </li>
-  </ul>
-  <hr>
-  <span class="text-xxs">V0.4</span>
-</div>
 </div>
 {% endblock content %}

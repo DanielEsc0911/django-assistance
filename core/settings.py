@@ -27,10 +27,10 @@ if not SECRET_KEY:
     SECRET_KEY = ''.join(random.choice( string.ascii_lowercase  ) for i in range( 32 ))
 
 # Render Deployment Code
-DEBUG = True #'RENDER' not in os.environ
+DEBUG = False #'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['*','0.0.0.0','https://*.sumi-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://*.sumi-production.up.railway.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0','https://*.horarios.up.railway.app', 'https://horarios.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.horarios.up.railway.app', 'https://horarios.up.railway.app']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:    

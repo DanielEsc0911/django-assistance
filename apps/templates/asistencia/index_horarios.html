@@ -12,13 +12,15 @@
 
                             <h4 class="mb-0">Horarios</h4>
                         </div>
+                        {% if perms.asistencia.add_horario %}
                         <div class="col text-end pe-3">
                             <h3>
-                                <a title="Agregar Docente" class="text-white" href=" {% url 'crear_horario' %} ">
+                                <a title="Agregar Horario" class="text-white" href=" {% url 'crear_horario' %} ">
                                     +
                                 </a>
                             </h3>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="card-body table-responsive">

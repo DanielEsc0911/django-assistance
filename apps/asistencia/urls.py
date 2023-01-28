@@ -10,7 +10,8 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [ 
-    path('', views.indexHome, name = 'home' ),
+    path('', views.Redir, name = 'redir' ),
+    path('home', views.indexHome, name = 'home' ),
     path('ucs', views.indexUc, name ='ucs' ),
     path('docentes', views.indexDocente, name ='docentes' ),
     path('horarios', views.indexHorario, name ='horarios' ),
