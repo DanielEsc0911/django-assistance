@@ -1,0 +1,39 @@
+{% block content %}
+<nav>
+    <div class="px-3 py-2 bg-primary">
+      <div class="container-fluid">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+          <a role="button" data-bs-toggle="collapse" data-bs-target="#collapseSBar"
+            class="nav-link text-white">
+            <i class="display-6 fa-solid fa-bars"></i>
+          </a>
+          <!--<ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Unidades Currculares</a></li>
+            <li><a class="dropdown-item" href="#">Administrar</a></li>
+            <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+          </ul>-->
+          <ul class="nav col-auto my-2 justify-content-center my-md-0 text-small">
+            <li>
+              <a href="{% url 'home' %}" class="nav-link text-white">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'horarios' %}" class="nav-link text-white">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
+                Horarios
+              </a>
+            </li>
+            <li>
+              <a href=" {% url 'docentes' %} " class="nav-link text-white">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                Docentes
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>    
+  </nav>
+ {% endblock content %}

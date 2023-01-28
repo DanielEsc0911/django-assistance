@@ -1,0 +1,41 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="container-fluid pt-1 pb-3" style="user-select:none;">
+    <div class="min-vh-80 h-100">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="card shadow my-4 w-50">
+                    <form class="form" method="POST">
+                    <div class="card-header bg-primary text-white p-3">
+                        <h4>Agregar Docente</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="d-flex justify-content-center input-group ">
+                            <table class="table-responsive">
+                                {% csrf_token %}
+                                {{ form.as_table }}
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+
+                        <div class="">
+
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                            <button class="btn btn-secondary" onClick="window.history.back();return false;">Cancelar</button>                        
+                        </div>
+                    </div>
+                </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+</script>
+{% endblock javascripts %} 

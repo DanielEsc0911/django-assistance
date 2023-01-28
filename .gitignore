@@ -11,6 +11,9 @@ __pycache__/
 *.db
 *.sql
 *.log
+migrations/
+avatars/
+*media/
 
 # venv
 env
@@ -23,8 +26,6 @@ superuser.cmd
 
 # javascript
 package-lock.json
-
-staticfiles/*
 !staticfiles/.gitkeep 
 .vscode/symbols.json
 
