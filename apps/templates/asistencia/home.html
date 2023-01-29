@@ -57,7 +57,7 @@
                                         <tr>
                                             <td>{{ docente.nombre }}</td>
                                             <td>{{ docente.apellido }}</td>
-                                            <td>{{ docente.ci }}-{{ docente.num_ci }}</td>
+                                            <td class="text-nowrap">{{ docente.ci }}-{{ docente.num_ci }}</td>
                                             <td class="text-center">
                                                 <a title="Ver Registro de asistencias" href="{% url 'asistencias_docente' docente.id %}">
                                                     <i class="fas fa-history    "></i>
@@ -84,7 +84,7 @@
                                 <thead>
                                     <tr>
                                         <th class="fs-6 text-secondary">Día</th>
-                                        <th class="fs-6 text-secondary">Unidad Curricular</th>
+                                        <th class="fs-6 text-secondary text-nowrap">Unidad Curricular</th>
                                         <th class="fs-6 text-secondary text-center">Sección</th>
                                         <th class="fs-6 text-secondary">Docente</th>
                                         <th class="fs-6 text-secondary text-center">Entrada</th>
@@ -96,9 +96,9 @@
                                     {% for horario in lista_horarios %}
                                     <tr>
                                         <td>{{ horario.dia|slice:"1:" }}</td>
-                                        <td>{{ horario.uc }}</td>
+                                        <td class="text-nowrap">{{ horario.uc }}</td>
                                         <td class="text-center">{{ horario.seccion }}</td>
-                                        <td>{{ horario.docente.nombre }} {{ horario.docente.apellido }}</td>
+                                        <td class="text-nowrap">{{ horario.docente.nombre }} {{ horario.docente.apellido }}</td>
                                         <td class="text-center">
                                             {% if horario.entrada|first in '0' %}
                                             {{ horario.entrada|slice:"1:" }}
