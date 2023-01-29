@@ -6,6 +6,7 @@
   {% language 'es' %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#0d6efd">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asistencias Docentes</title>
     <!--Bootstrap-->
@@ -16,6 +17,10 @@
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!--JQueryUI-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="{{ ASSETS_ROOT }}/js/JQUI/jquery-ui.js">$datepicker.setDefaults({showOn: "both", buttonText: "Calendar"})</script>
+    <script src="{{ ASSETS_ROOT }}/js/JQUI/ui/datepicker-es.js"></script>
     <!--Select2-->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -27,7 +32,7 @@
     <style>
       a {color: inherit; text-decoration: inherit;}
       .errorlist{position: absolute; margin: none !important; pointer-events: none;}
-      .errorlist li{color: red;font-size: x-small;font-weight: 700;line-height: 3.75rem;}
+      .errorlist li{color: red;font-size: 9px;font-weight: 700;line-height: 4rem;}
       #collapseSbar{transition: all .35s ease-in-out !important}
     </style>
 </head>

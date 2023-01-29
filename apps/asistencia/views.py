@@ -17,7 +17,7 @@ def Redir(request):
 def indexHome(request):
     lista_ucs = Uc.objects.all().reverse().reverse()[:3]
     lista_docentes = Docente.objects.all().reverse().reverse()[:3]
-    lista_horarios = Horario.objects.all()
+    lista_horarios = Horario.objects.all().order_by('dia')
 
     context = {
         'lista_ucs': lista_ucs,
@@ -44,6 +44,18 @@ def indexHorario(request):
     lista_horarios = Horario.objects.all().order_by('dia',)
                 
     return render (request, 'asistencia/index_horarios.html', {'lista_horarios': lista_horarios})
+
+@login_required(login_url='/login/')
+def indexAsistencia(request):
+    lista_asistencias = Asistencia.objects.all().order_by('fecha',)
+                
+    return render (request, 'asistencia/index_asistencia.html', {'lista_asistencias': lista_asistencias})
+
+@login_required(login_url='/login/')
+def indexAsistenciaDocente(request, pk):
+    lista_asistencias = Asistencia.objects.filter(docente__pk=pk).order_by('fecha',)
+                
+    return render (request, 'asistencia/index_asistencia.html', {'lista_asistencias': lista_asistencias})
 
 #--------------------------------------------------------------CRUD
 
@@ -85,6 +97,18 @@ def crearHorario(request):
             return redirect('horarios')
             
     return render (request, 'asistencia/form_horario.html', {'form': form})
+
+@login_required(login_url='/login/')
+@permission_required('asistencia.add_horario', raise_exception=True)
+def crearAsistencia(request):
+    form = FormAsistencia()
+    if request.method == 'POST':
+        form = FormAsistencia(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('asistencias')
+            
+    return render (request, 'asistencia/form_asistencia.html', {'form': form})
 #--------------------------------------------------------------
 
 

@@ -30,6 +30,7 @@
                                 <th class="fs-6 text-secondary">Nombre</th>
                                 <th class="fs-6 text-secondary">Apellido</th>
                                 <th class="fs-6 text-secondary">Cédula</th>
+                                <th class="fs-6 text-secondary">Registro</th>
                                 {% if perms.asistencia.change_docente or perms.asistencia.delete_docente %}
                                 <th class="fs-6 text-secondary text-center">Opciones</th>
                                 {% endif %}
@@ -42,7 +43,11 @@
                                 <td>{{ docente.nombre }}</td>
                                 <td>{{ docente.apellido }}</td>
                                 <td>{{ docente.ci }}-{{ docente.num_ci }}</td>
-
+                                <td class="text-center">
+                                    <a title="Ver Registro de asistencias" href="{% url 'asistencias_docente' docente.id %}">
+                                        <i class="fas fa-history    "></i>
+                                    </a>
+                                </td>
 
                                 {% if perms.asistencia.change_docente or perms.asistencia.delete_docente %}
                                 <td class="text-center align-middle">

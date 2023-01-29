@@ -33,7 +33,6 @@
                                 <th class="fs-6 text-secondary">Docente</th>
                                 <th class="fs-6 text-secondary text-center">Entrada</th>
                                 <th class="fs-6 text-secondary text-center">Salida</th>
-                                <th class="fs-6 text-secondary text-center">Asistencia</th>
                                 {% if perms.asistencia.change_uc or perms.asistencia.delete_uc %}
                                 <th class="fs-6 text-secondary text-center">Opciones</th>
                                 {% endif %}
@@ -59,13 +58,6 @@
                                     {{ horario.salida|slice:"1:" }}
                                     {% else %}
                                     {{ horario.salida }}
-                                    {% endif %}
-                                </td>
-                                <td class="text-center">                                    
-                                    {% if horario.asistencia == True %}
-                                    <i class="fas fa-check text-success"></i>
-                                    {% else %}
-                                    <i class="fas fa-times text-danger"></i>
                                     {% endif %}
                                 </td>
                                 

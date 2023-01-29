@@ -32,11 +32,10 @@ class FormHorario(ModelForm):
         widgets ={
             'uc': Select(attrs={'class': 'form-select'}),
             'seccion': NumberInput(attrs={'class': 'form-control', 'autocomplete':'off'}),
-            'docente': Select(attrs={'class': 'form-select'}),          
+            'docente': Select(attrs={'class': 'form-select'}),
             'dia': Select(attrs={'class': 'form-select'}),          
             'entrada': TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'0:00 - 23:59'}),
             'salida':TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'0:00 - 23:59'}),
-            'asistencia': CheckboxInput(attrs={'class': 'form-check-input justify-content-center'}),
         }
 
 class FormUc(ModelForm):    
@@ -44,3 +43,14 @@ class FormUc(ModelForm):
         model = Uc
         fields = '__all__'
         widgets ={'nombre': TextInput(attrs={'class': 'form-control', 'autocomplete':'off'})}
+
+class FormAsistencia(ModelForm):
+    class Meta:
+        model = Asistencia
+        fields = '__all__'
+        localized_fields=('fecha',)
+        widgets ={
+            'fecha': DateInput(attrs={'class':'form-control text-center', 'autocomplete':'off', 'placeholder':'DD/MM/AAAA'}),
+            'docente': Select(attrs={'class': 'form-select'}),
+            'asistencia': CheckboxInput(attrs={'class': 'form-check-input justify-content-center'}),
+        }

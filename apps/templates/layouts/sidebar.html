@@ -1,6 +1,6 @@
 {% block content %}
 <div class="collapse" id="collapseSBar" style="user-select: none;">
-  <div class="position-absolute d-flex flex-column shadow flex-shrink-0 p-3 bg-light"
+  <div class="position-fixed d-flex flex-column shadow flex-shrink-0 p-3 bg-light"
     style="width: 280px; height: 100%; z-index: 5;">
     <div class="d-flex justify-content-between">
       <div>
@@ -52,12 +52,19 @@
           Unidades Curriculares
         </a>
       </li>
+      <li>
+        <a href="{% url 'asistencias' %}" 
+        class="nav-link {% if 'asistencias' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+          <i class="fas fa-history me-2"></i>
+          Registro Asistencias
+        </a>
+      </li>
     </ul>
     <hr class="mb-3">
     <ul class="nav nav-pills">
       <li>
         <a href="/logout" class="nav-link text-dark">
-          <i class="fa fa-sign-out me-1" aria-hidden="true"> </i>
+          <i class="fas fa-sign-out me-2" aria-hidden="true"> </i>
           Cerrar Sesión
         </a>
       </li>
