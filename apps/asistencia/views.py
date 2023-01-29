@@ -17,7 +17,7 @@ def Redir(request):
 def indexHome(request):
     lista_ucs = Uc.objects.all().reverse().reverse()[:3]
     lista_docentes = Docente.objects.all().reverse().reverse()[:3]
-    lista_horarios = Horario.objects.all().order_by('dia')
+    lista_horarios = Horario.objects.all().order_by('dia', 'uc', 'seccion')
 
     context = {
         'lista_ucs': lista_ucs,
@@ -41,7 +41,7 @@ def indexDocente(request):
 
 @login_required(login_url='/login/')
 def indexHorario(request):
-    lista_horarios = Horario.objects.all().order_by('dia',)
+    lista_horarios = Horario.objects.all().order_by('dia', 'uc', 'seccion')
                 
     return render (request, 'asistencia/index_horarios.html', {'lista_horarios': lista_horarios})
 
