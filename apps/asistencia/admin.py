@@ -13,3 +13,4 @@ class HorarioAdmin(admin.ModelAdmin):
 admin.site.register(Docente, DocenteAdmin)
 admin.site.register(Horario, HorarioAdmin)
 admin.site.register(Uc)
+admin.site.register(Asistencia)
