@@ -7,8 +7,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import *
 from .forms import *
-
-# Create your views here.
+from .filters import *
 
 def Redir(request):
     return redirect('home')
@@ -19,43 +18,74 @@ def indexHome(request):
     lista_docentes = Docente.objects.all().reverse().reverse()[:3]
     lista_horarios = Horario.objects.all().order_by('dia', 'uc', 'seccion')
 
-    context = {
+    ctx = {
+        'tab':'home',
         'lista_ucs': lista_ucs,
         'lista_docentes': lista_docentes,
         'lista_horarios': lista_horarios,
     }
 
-    return render (request, 'asistencia/home.html', context)
+    return render (request, 'asistencia/home.html', ctx)
 
 @login_required(login_url='/login/')
 def indexUc(request):
     lista_ucs = Uc.objects.all()
-                
-    return render (request, 'asistencia/index_ucs.html', {'lista_ucs': lista_ucs})
+    filter_ucs = UcFilter(request.GET, queryset=lista_ucs)
+    lista_ucs = filter_ucs.qs
+    
+    ctx = {
+        'tab':'ucs',
+        'lista_ucs': lista_ucs,
+        'filter_ucs': filter_ucs
+        }
+    return render (request, 'asistencia/index_ucs.html', ctx)
 
 @login_required(login_url='/login/')
 def indexDocente(request):
     lista_docentes = Docente.objects.all()
-                
-    return render (request, 'asistencia/index_docentes.html', {'lista_docentes': lista_docentes})
+    filter_docentes = DocenteFilter(request.GET, queryset=lista_docentes)
+    lista_docentes = filter_docentes.qs
+
+    ctx = {
+        'tab':'docentes',
+        'lista_docentes': lista_docentes,
+        'filter_docentes': filter_docentes
+        }
+    return render (request, 'asistencia/index_docentes.html', ctx)
 
 @login_required(login_url='/login/')
 def indexHorario(request):
     lista_horarios = Horario.objects.all().order_by('dia', 'uc', 'seccion')
-                
-    return render (request, 'asistencia/index_horarios.html', {'lista_horarios': lista_horarios})
+    filter_horarios = HorarioFilter(request.GET, queryset=lista_horarios)
+    lista_horarios = filter_horarios.qs
+
+    ctx = {
+        'tab':'horarios',
+        'lista_horarios': lista_horarios,
+        'filter_horarios': filter_horarios
+        }
+    return render (request, 'asistencia/index_horarios.html', ctx)
 
 @login_required(login_url='/login/')
 def indexAsistencia(request):
-    lista_asistencias = Asistencia.objects.all().order_by('fecha',)
-                
-    return render (request, 'asistencia/index_asistencia.html', {'lista_asistencias': lista_asistencias})
+    lista_asistencias = Asistencia.objects.all().order_by('-fecha',)
+    filter_asistencias = AsistenciaFilter(request.GET, queryset=lista_asistencias)
+    lista_asistencias = filter_asistencias.qs
+    
+    ctx = {
+        'tab':'asistencias',
+        'lista_asistencias': lista_asistencias,
+        'filter_asistencias': filter_asistencias
+        }
+    return render (request, 'asistencia/index_asistencia.html', ctx)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/login/')#sin uso--------------------------------------------------------------------------------------
 def indexAsistenciaDocente(request, pk):
-    lista_asistencias = Asistencia.objects.filter(docente__pk=pk).order_by('fecha',)
+    lista_asistencias = Asistencia.objects.filter(docente__pk=pk).order_by('-fecha',)
+    filter_asistencias = AsistenciaFilter(request.GET, queryset=lista_asistencias)
+    lista_asistencias = filter_asistencias.qs
                 
-    return render (request, 'asistencia/index_asistencia.html', {'lista_asistencias': lista_asistencias})
+    return render (request, 'asistencia/index_asistencia.html', {'lista_asistencias': lista_asistencias, 'filter_asistencias': filter_asistencias})
 
 #--------------------------------------------------------------CRUD
 
@@ -69,7 +99,7 @@ def crearUc(request):
         if form.is_valid():
             form.save()
             return redirect('ucs')     
-    return render (request, 'asistencia/form_uc.html', {'form': form})
+    return render (request, 'asistencia/form_uc.html', {'tab':'ucs','form': form})
 
 @login_required(login_url='/login/')
 @permission_required('asistencia.add_docente', raise_exception=True)
@@ -84,7 +114,7 @@ def crearDocente(request):
             cap.save()
             return redirect('docentes')
             
-    return render (request, 'asistencia/form_docente.html', {'form': form})
+    return render (request, 'asistencia/form_docente.html', {'tab':'docentes','form': form})
 
 @login_required(login_url='/login/')
 @permission_required('asistencia.add_horario', raise_exception=True)
@@ -96,7 +126,7 @@ def crearHorario(request):
             form.save()
             return redirect('horarios')
             
-    return render (request, 'asistencia/form_horario.html', {'form': form})
+    return render (request, 'asistencia/form_horario.html', {'tab':'horarios','form': form})
 
 @login_required(login_url='/login/')
 @permission_required('asistencia.add_horario', raise_exception=True)
@@ -108,7 +138,7 @@ def crearAsistencia(request):
             form.save()
             return redirect('asistencias')
             
-    return render (request, 'asistencia/form_asistencia.html', {'form': form})
+    return render (request, 'asistencia/form_asistencia.html', {'tab':'asistencias', 'form': form})
 #--------------------------------------------------------------
 
 
@@ -123,7 +153,7 @@ def editUc(request, pk):
         if form.is_valid():
             form.save()
             return redirect('ucs')     
-    return render (request, 'asistencia/form_uc.html', {'form': form})
+    return render (request, 'asistencia/form_uc.html', {'tab':'ucs', 'form': form})
 
 @login_required(login_url='/login/')
 @permission_required('asistencia.change_docente', raise_exception=True)
@@ -139,7 +169,7 @@ def editDocente(request, pk):
             cap.save()
             return redirect('docentes')
             
-    return render (request, 'asistencia/form_docente.html', {'form': form})
+    return render (request, 'asistencia/form_docente.html', {'tab':'docentes', 'form': form})
 
 @login_required(login_url='/login/')
 @permission_required('asistencia.change_horario', raise_exception=True)
@@ -152,7 +182,7 @@ def editHorario(request, pk):
             form.save()
             return redirect('horarios')
             
-    return render (request, 'asistencia/form_horario.html', {'form': form})
+    return render (request, 'asistencia/form_horario.html', {'tab':'horarios', 'form': form})
 #--------------------------------------------------------------
 
 #--------------------------------------------------------------delete

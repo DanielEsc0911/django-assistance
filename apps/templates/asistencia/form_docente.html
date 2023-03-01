@@ -1,7 +1,18 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
+<style>
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
 
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+</style>
 <div class="container-fluid pt-1 pb-3" style="user-select:none;">
     <div class="min-vh-80 h-100">
         <div class="col-12 d-flex justify-content-center">
@@ -32,10 +43,23 @@
         </div>
     </div>
 </div>
-
-{% endblock content %}
-
-{% block javascripts %}
 <script>
-</script>
-{% endblock javascripts %} 
+    function maxLengthCheck(object) {
+      if (object.value.length > object.max.length)
+        object.value = object.value.slice(0, object.max.length)
+    }
+      
+    function isNumeric (evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode (key);
+      var regex = /[0-9]|\./;
+      if ( !regex.test(key) ) {
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+  </script>
+{% endblock content %}
+{% block javascripts %}
+{% endblock javascripts %}

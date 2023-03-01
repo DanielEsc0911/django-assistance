@@ -15,22 +15,32 @@
                         {% if perms.asistencia.add_docente %}
                         <div class="col text-end pe-3">
                             <h3>
-                                <a title="Agregar Docente" class="text-white" href=" {% url 'crear_docente' %} ">
-                                    +
+                                <a href=" {% url 'crear_docente' %} ">
+                                    <button title="Agregar Docente" class="btn btn-primary">
+                                        <i class="fas fa-plus    "></i>
+                                    </button>
                                 </a>
                             </h3>
                         </div>
                         {% endif %}
                     </div>
+                    <div>
+                        <form class="d-flex" method="get">
+                            <div class="w-100 pe-1">{{ filter_docentes.form.nombre }}</div>
+                            <div class="w-100 pe-1">{{ filter_docentes.form.apellido }}</div>
+                            <button title="Buscar" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
                 </div>
                 <div class="card-body table-responsive">
+                    {% if lista_docentes %}
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th class="fs-6 text-secondary">Nombre</th>
                                 <th class="fs-6 text-secondary">Apellido</th>
                                 <th class="fs-6 text-secondary">Cédula</th>
-                                <th class="fs-6 text-secondary">Registro</th>
+                                <th class="fs-6 text-secondary text-center">Registro</th>
                                 {% if perms.asistencia.change_docente or perms.asistencia.delete_docente %}
                                 <th class="fs-6 text-secondary text-center">Opciones</th>
                                 {% endif %}
@@ -44,8 +54,8 @@
                                 <td>{{ docente.apellido }}</td>
                                 <td class="text-nowrap">{{ docente.ci }}-{{ docente.num_ci }}</td>
                                 <td class="text-center">
-                                    <a title="Ver Registro de asistencias" href="{% url 'asistencias_docente' docente.id %}">
-                                        <i class="fas fa-history    "></i>
+                                    <a title="Ver Registro de asistencias" href="{% url 'asistencias' %}?docente={{ docente.id }}">
+                                        <i class="fas fa-history"></i>
                                     </a>
                                 </td>
 
@@ -105,6 +115,9 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    {% else %}
+                    <h5 class="text-center text-secondary mb-1">No se encontraron docentes</h5>
+                    {% endif %}
                 </div>
             </div>
         </div>

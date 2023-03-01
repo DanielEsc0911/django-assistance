@@ -13,17 +13,25 @@
                             <h4 class="mb-0">Horarios</h4>
                         </div>
                         {% if perms.asistencia.add_horario %}
-                        <div class="col text-end pe-3">
+                        <div class="col text-end">
                             <h3>
                                 <a title="Agregar Horario" class="text-white" href=" {% url 'crear_horario' %} ">
-                                    +
+                                    <button class="btn btn-primary"><i class="fas fa-plus"></i></button>
                                 </a>
                             </h3>
                         </div>
                         {% endif %}
+                        <div>
+                            <form class="d-flex" method="get">
+                                <div class="w-75 pe-1">{{ filter_horarios.form.uc }}</div>
+                                <div class="w-25 pe-1">{{ filter_horarios.form.seccion }}</div>
+                                <button title="Buscar" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body table-responsive">
+                    {% if lista_horarios %}
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -96,7 +104,7 @@
                                                     <p class="mb-0 font-weight-bold"
                                                         style="line-height: 1.25; font-weight: 500 !important;">
                                                         ¿Seguro que desea eliminar el Horario <b
-                                                            style="color: var(--bs-primary)">{{ horario.entrada }}-{{ horario.salida }}</b>?
+                                                            style="color: var(--bs-primary)">{{ horario.uc }} Sección {{ horario.seccion }}</b>?
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer text-center justify-content-center py-2">
@@ -117,6 +125,9 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    {% else %}
+                    <h5 class="text-center text-secondary mb-1">No se encontraron horarios</h5>
+                    {% endif %}
                 </div>
             </div>
         </div>

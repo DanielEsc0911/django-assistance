@@ -22,7 +22,7 @@ class FormDocente(ModelForm):
             'nombre': TextInput(attrs={'class': 'form-control text-capitalize', 'autocomplete':'off'}),
             'apellido': TextInput(attrs={'class': 'form-control text-capitalize', 'autocomplete':'off'}),
             'ci': Select(attrs={'class': 'form-select text-center'}),          
-            'num_ci': TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'00000000'}),
+            'num_ci': NumberInput(attrs={'class': 'form-control numberonly', 'max':'99999999', 'autocomplete':'off', 'placeholder':'00000000', 'onkeypress':'return isNumeric(event)', 'oninput':'maxLengthCheck(this)'}),
         }
 
 class FormHorario(ModelForm):
@@ -37,6 +37,9 @@ class FormHorario(ModelForm):
             'entrada': TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'0:00 - 23:59'}),
             'salida':TextInput(attrs={'class': 'form-control', 'autocomplete':'off', 'placeholder':'0:00 - 23:59'}),
         }
+    def __init__(self, *args, **kwargs):
+        super(FormHorario, self).__init__(*args, **kwargs)
+        self.fields['uc'].label = "Materia"
 
 class FormUc(ModelForm):    
     class Meta:
@@ -54,3 +57,7 @@ class FormAsistencia(ModelForm):
             'docente': Select(attrs={'class': 'form-select'}),
             'asistencia': CheckboxInput(attrs={'class': 'form-check-input justify-content-center'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(FormAsistencia, self).__init__(*args, **kwargs)
+        self.fields['asistencia'].label = "Asistio"

@@ -46,6 +46,6 @@ class Uc (models.Model):
         return self.nombre
 
 class Asistencia (models.Model):
-    fecha = models.DateField(null=True)
+    fecha = models.DateField(null=True, auto_now_add=True)
     docente = models.ForeignKey('Docente', on_delete=models.CASCADE, null=True)
     asistencia = models.BooleanField(null=True)

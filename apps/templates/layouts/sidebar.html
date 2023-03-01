@@ -17,7 +17,7 @@
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="{% url 'home' %}"
-          class="nav-link {% if 'home' in request.get_full_path %}active{% else %}link-dark{% endif %}"
+          class="nav-link {% if tab == 'home' %}active{% else %}link-dark{% endif %}"
           aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#home" />
@@ -27,7 +27,7 @@
       </li>
       <li>
         <a href="{% url 'horarios' %}"
-          class="nav-link {% if 'horario' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+          class="nav-link {% if tab == 'horarios' %}active{% else %}link-dark{% endif %}">
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#table" />
           </svg>
@@ -36,7 +36,7 @@
       </li>
       <li>
         <a href="{% url 'docentes' %}"
-          class="nav-link {% if 'docente' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+          class="nav-link {% if tab == 'docentes' %}active{% else %}link-dark{% endif %}">
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#people-circle" />
           </svg>
@@ -45,7 +45,7 @@
       </li>
       <li>
         <a href="{% url 'ucs' %}"
-          class="nav-link {% if 'ucs' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+          class="nav-link {% if tab == 'ucs' %}active{% else %}link-dark{% endif %}">
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#grid" />
           </svg>
@@ -54,7 +54,7 @@
       </li>
       <li>
         <a href="{% url 'asistencias' %}" 
-        class="nav-link {% if 'asistencias' in request.get_full_path %}active{% else %}link-dark{% endif %}">
+        class="nav-link {% if tab == 'asistencias' %}active{% else %}link-dark{% endif %}">
           <i class="fas fa-history me-2"></i>
           Registro Asistencias
         </a>

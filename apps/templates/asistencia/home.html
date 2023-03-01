@@ -59,7 +59,7 @@
                                             <td>{{ docente.apellido }}</td>
                                             <td class="text-nowrap">{{ docente.ci }}-{{ docente.num_ci }}</td>
                                             <td class="text-center">
-                                                <a title="Ver Registro de asistencias" href="{% url 'asistencias_docente' docente.id %}">
+                                                <a title="Ver Registro de asistencias" href="{% url 'asistencias' %}?docente={{ docente.id }}">
                                                     <i class="fas fa-history    "></i>
                                                 </a>
                                             </td>

@@ -11,7 +11,7 @@ urlpatterns = [
     path('ucs', views.indexUc, name ='ucs'),
     path('docentes', views.indexDocente, name ='docentes'),
     path('horarios', views.indexHorario, name ='horarios'),
-    path('asistencias', views.indexAsistencia, name ='asistencias'), path('asistencias/docente/<str:pk>', views.indexAsistenciaDocente, name ='asistencias_docente'),
+    path('asistencias', views.indexAsistencia, name ='asistencias'), #path('asistencias/docente/<str:pk>', views.indexAsistenciaDocente, name ='asistencias_docente'),
 
     path('ucs/crear', views.crearUc, name ='crear_uc'),
     path('docentes/crear', views.crearDocente, name ='crear_docente'),

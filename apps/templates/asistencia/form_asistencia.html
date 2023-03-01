@@ -6,11 +6,11 @@
     <div class="min-vh-80 h-100">
         <div class="col-12 d-flex justify-content-center">
             <div class="card shadow my-4 w-auto">
-                    <form class="form" method="POST">
+                <form class="form" method="POST">
                     <div class="card-header bg-primary text-white p-3 text-nowrap">
                         <h4>Registrar Asistencia</h4>
                     </div>
-                    <div class="card-body ">
+                    <div class="card-body">
                         <div class="d-flex justify-content-center input-group ">
                             <table class="table-responsive">
                                 {% csrf_token %}
@@ -25,9 +25,10 @@
                             <button class="btn btn-primary" type="submit">Guardar</button>
                             <button class="btn btn-secondary" onClick="window.history.back();return false;">Cancelar</button>                        
                         </div>
+
                     </div>
                 </form>
-                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -39,7 +40,14 @@
       }, $.datepicker.regional[ "es" ]);
     }); 
 </script>
-
+{% if not request.user.is_superuser %}
+<script>  //sin uso-------------------------------
+  $(document).ready(function () {
+    $('#id_fecha').attr('style', 'user-select: none !important;');
+    $('#id_fecha').prop('readonly', true)
+  });
+</script>
+{% endif %}  
 {% endblock content %}
 
 {% block javascripts %}

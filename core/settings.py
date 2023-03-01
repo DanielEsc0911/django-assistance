@@ -27,7 +27,7 @@ if not SECRET_KEY:
     SECRET_KEY = ''.join(random.choice( string.ascii_lowercase  ) for i in range( 32 ))
 
 # Render Deployment Code
-DEBUG = False #'RENDER' not in os.environ
+DEBUG = True #'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['*','0.0.0.0','horario.up.railway.app','https://horario.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://horario.up.railway.app']
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.asistencia',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
