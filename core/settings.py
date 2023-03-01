@@ -29,8 +29,8 @@ if not SECRET_KEY:
 # Render Deployment Code
 DEBUG = True #'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['*','0.0.0.0','horario.up.railway.app','https://horario.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://horario.up.railway.app']
+ALLOWED_HOSTS = ['*','0.0.0.0','horario.up.railway.app','https://horario.up.railway.app', 'https://assistance.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://horario.up.railway.app', 'https://assistance.up.railway.app']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:    
